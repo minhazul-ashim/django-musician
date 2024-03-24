@@ -16,6 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path;
+from django.shortcuts import redirect;
 from . import views;
 
 urlpatterns = [
@@ -27,5 +28,6 @@ urlpatterns = [
     path('editAlbum/<int:id>', views.editAlbum, name="editAlbumPage"),
     path('listAlbums/', views.listAlbums, name="albumsPage"),
     path('deleteMusician/<int:id>', views.deleteMusician, name="deleteMusician"),
+    path('deleteAlbum/<int:id>', views.deleteAlbum, name="deleteAlbum"),
     path('deleteAlbum/<int:id>', views.deleteAlbum, name="deleteAlbum"),
 ]
