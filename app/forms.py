@@ -11,3 +11,6 @@ class AlbumForm(forms.ModelForm) :
     class Meta :
         model = models.Album;
         fields = "__all__";
+        widgets = {
+            "releaseDate": forms.DateInput(attrs={'type': 'date'})
+        }
