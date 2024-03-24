@@ -21,9 +21,11 @@ from . import views;
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('addMusician/', views.addMusician, name="addMusicianPage"),
-    path('editMusician/', views.editMusician, name="editMusicianPage" ),
+    path('editMusician/<int:id>', views.editMusician, name="editMusicianPage" ),
     path('listMusician/', views.listMusicians, name="musiciansPage"),
     path('addAlbum/', views.addAlbum, name="addAlbumPage"),
-    path('editAlbum/', views.editAlbum, name="editAlbumPage"),
+    path('editAlbum/<int:id>', views.editAlbum, name="editAlbumPage"),
     path('listAlbums/', views.listAlbums, name="albumsPage"),
+    path('deleteMusician/<int:id>', views.deleteMusician, name="deleteMusician"),
+    path('deleteAlbum/<int:id>', views.deleteAlbum, name="deleteAlbum"),
 ]

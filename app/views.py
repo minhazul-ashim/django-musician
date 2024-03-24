@@ -20,8 +20,20 @@ def listMusicians(request) :
     return render(request, 'musicians.html', {"data" : data});
 
 # Create your views here.
-def editMusician(request) :
-    return render(request, 'editMusician.html');
+def editMusician(request, id) :
+    musician = models.Musician.objects.get(pk=id)
+    form =  forms.MusicianForm(instance=musician)
+    if request.method == 'POST' :
+        form =  forms.MusicianForm(request.POST, instance=musician)
+        if(form.is_valid()) :
+            form.save();
+            return redirect('musiciansPage');
+    return render(request, 'editMusicians.html', {"form" : form, "musician": musician});
+
+
+def deleteMusician(request, id) :
+    album = models.Musician.objects.get(pk=id).delete();
+    return redirect('musiciansPage')
 
 # Create your views here.
 def addAlbum(request) :
@@ -41,5 +53,16 @@ def listAlbums(request) :
     return render(request, 'albums.html', {"data" : data});
 
 # Create your views here.
-def editAlbum(request) :
-    return render(request, 'editAlbum.html');
+def editAlbum(request, id) :
+    album = models.Album.objects.get(pk=id);
+    form = forms.AlbumForm(instance=album);
+    if request.method == 'POST' :
+        form = forms.AlbumForm(request.POST, instance=album);
+        if(form.is_valid()):
+            form.save();
+            return redirect('albumsPage');
+    return render(request, 'editAlbums.html', {"form": form});
+
+def deleteAlbum(request, id) :
+    album = models.Album.objects.get(pk=id).delete();
+    return redirect('albumsPage')
