@@ -9,6 +9,9 @@ class Musician(models.Model) :
     phoneNumber = models.CharField(max_length = 20);
     instrumentType = models.CharField(max_length = 20);
 
+    def __str__(self) -> str:
+        return f"ID: {self.id} Name : {self.firstName} {self.lastName}"
+
 
 class Album(models.Model) :
     id = models.IntegerField(primary_key = True);
@@ -16,3 +19,6 @@ class Album(models.Model) :
     releaseDate = models.DateField();
     rating = models.FloatField();
     musician = models.ForeignKey(Musician, on_delete=models.CASCADE)
+
+    def __str__(self) -> str:
+        return f"ID: {self.id} Album : {self.name}"
